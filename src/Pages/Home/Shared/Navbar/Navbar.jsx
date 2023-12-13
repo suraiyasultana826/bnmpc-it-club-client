@@ -1,7 +1,8 @@
+import { Link } from 'react-router-dom';
 import logo from '../../../../assets/Official Logo.png'
 const Navbar = () => {
   const navOptions = <>
-    <li><a>Home</a></li>
+    <li><Link to='/'><a>Home</a></Link></li>
     <li><a>Gallery</a></li>
     <li><a>About us</a></li>
     <li><a>Contact Us</a></li>
@@ -26,7 +27,7 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          {/* <a className="btn">Button</a> */}
+          <Link to='/register'><a className="btn bg-blue-900 text-white">Register</a></Link>
         </div>
       </div>
     );
