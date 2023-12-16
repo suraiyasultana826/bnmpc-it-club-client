@@ -1,16 +1,16 @@
-import banner from '../../../assets/bannerr.jpg'
+import banner from '../../../assets/banner.jpg'
 const Banner = () => {
   return (
 
 
 
-    <div className="hero min-h-screen" style={{ backgroundImage: `url(${banner})` }}>
+    <div className="hero bg-center md:min-h-screen" style={{ backgroundImage: `url(${banner})` }}>
       <div className="hero-overlay bg-opacity-60"></div>
       <div className="hero-content text-center text-neutral-content">
         <div className="max-w-md">
-          <h1 className="mb-5 text-5xl font-bold">Not a volunteer?</h1>
+          <h1 className="mb-5 text-xl md:text-5xl font-bold">Not a volunteer?</h1>
           <p className="mb-5">Join Now!!!</p>
-          <button className="btn btn-primary">Register</button>
+          <button className="btn bg-blue-800 text-white border-none">Register</button>
         </div>
       </div>
     </div>
