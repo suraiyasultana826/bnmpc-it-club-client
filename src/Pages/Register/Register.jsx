@@ -1,5 +1,12 @@
+import toast from 'react-hot-toast';
 import register from '../../../src/assets/register-cover.avif'
+import {  useLocation, useNavigation } from 'react-router-dom';
 const Register = () => {
+
+
+    const location = useLocation();
+    const navigate = useNavigation();
+
     const registerVolunteer = event => {
         event.preventDefault();
         const form = event.target;
@@ -10,8 +17,25 @@ const Register = () => {
         const section = form.section.value;
         const number = form.number.value;
         const fbId = form.fbId.value;
-        const newVolunteer = {name, email, klass, roll, section, number, fbId};
+        const date = form.date.value;
+        const newVolunteer = {name, email, klass, roll, section, number, fbId, date};
         console.log(newVolunteer);
+
+        fetch('http://localhost:5000/newVolReg', {
+            method:'POST',
+            headers: {
+                'content-type' : 'application/json'
+            },
+            body: JSON.stringify(newVolunteer)
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+            if(data.insertedId){
+                toast.success('Volunteer Registration Successful!')
+                navigate(location?.state ? location.state : '/')
+            }
+        })
     }
     return (
         <div>
@@ -34,12 +58,20 @@ const Register = () => {
                                             </label>
                                             <input type="text" placeholder="name" name='name' className="input input-bordered" required />
                                         </div>
-                                        <div className="form-control">
+                                       <div className='md:flex gap-5'>
+                                       <div className="form-control">
                                             <label className="label">
                                                 <span className="label-text text-white">Email</span>
                                             </label>
                                             <input type="email" placeholder="email" name='email' className="input input-bordered" required />
                                         </div>
+                                        <div className="form-control">
+                                            <label className="label">
+                                                <span className="label-text text-white">Date</span>
+                                            </label>
+                                            <input type="date"  name='date' className="input input-bordered text-black" required />
+                                        </div>
+                                       </div>
                                       <div className='md:flex gap-5'>
                                       <div className="form-control">
                                             <label className="label">
@@ -77,7 +109,7 @@ const Register = () => {
                                            
                                         </div>
                                         <div className="form-control mt-6">
-                                            <button className="btn border-none text-white font-bold bg-blue-900">Register</button>
+                                       <button className="btn border-none text-white font-bold bg-blue-900">Register</button>
                                         </div>
                                     </form>
                                 </div>
