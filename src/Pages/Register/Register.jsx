@@ -1,11 +1,12 @@
 import toast from 'react-hot-toast';
 import register from '../../../src/assets/register-cover.avif'
-import {  useLocation, useNavigation } from 'react-router-dom';
+// import {  useLocation, useNavigation } from 'react-router-dom';
+import ParticleComponent from './ParticleComponent';
 const Register = () => {
 
 
-    const location = useLocation();
-    const navigate = useNavigation();
+    // const location = useLocation();
+    // const navigate = useNavigation();
 
     const registerVolunteer = event => {
         event.preventDefault();
@@ -33,12 +34,13 @@ const Register = () => {
             console.log(data);
             if(data.insertedId){
                 toast.success('Volunteer Registration Successful!')
-                navigate(location?.state ? location.state : '/')
+                // navigate(location?.state ? location.state : '/')
             }
         })
     }
     return (
         <div>
+             <ParticleComponent />
             <div className="hero min-h-screen" style={{ backgroundImage: `url(${register})` }}>
                 <div className="hero-overlay bg-opacity-60"></div>
                 <div className="hero-content text-center text-neutral-content">

@@ -1,6 +1,5 @@
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
-import { Parallax } from 'react-parallax';
 import SectionTitle from '../Components/SectionTitle/SectionTitle';
 import ChooseUs from '../assets/chooseUs.jpg';
 import whyChooseUs from '../assets/whyChooseUs.jpg'
