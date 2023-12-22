@@ -1,8 +1,8 @@
 import Faq from "../../../FAQ/Faq";
 import Magazine from "../../../Magazine/Magazine";
 import Sectors from "../../../Sectors/Sectors";
+import CurioCards from "../../../curioCards/CurioCards";
 import AboutUs from "../AboutUs/AboutUs";
-import Banner from "../Banner/Banner";
 import Bannerr from "../Banner/Bannerr";
 import ChooseUs from "../ChooseUs/ChooseUs";
 
@@ -10,6 +10,7 @@ const Home = () => {
     return (
         <div>
             <Bannerr></Bannerr>
+            <CurioCards></CurioCards>
             <AboutUs></AboutUs>
             <Sectors></Sectors>
             <Magazine></Magazine>

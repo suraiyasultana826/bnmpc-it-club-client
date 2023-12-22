@@ -3,7 +3,7 @@ import logo from '../../../../assets/Official Logo.png'
 const Navbar = () => {
   const navOptions = <>
     <li><Link to='/'><a>Home</a></Link></li>
-    <li><a>Gallery</a></li>
+    <li><Link to='/gallery'><a>Gallery</a></Link></li>
     <li><a>About us</a></li>
     <li><a>Contact Us</a></li>
   </>
