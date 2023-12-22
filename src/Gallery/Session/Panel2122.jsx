@@ -7,8 +7,8 @@ const Panel2122 = () => {
     return (
         <div>
         <SectionTitle heading='session 19-20'></SectionTitle>
-        <img src={banner} alt="" />
-        <div className="grid md:grid-cols-3 gap-5 my-10">
+        <img data-aos="fade-up"  data-aos-duration="2000" src={banner} alt="" />
+        <div data-aos="fade-up"  data-aos-duration="2000" className="grid md:grid-cols-3 gap-5 my-10">
             <img src={panel1} alt="" />
             <img src={panel2} alt="" />
             <img className="md: h-64" src={panel3} alt="" />

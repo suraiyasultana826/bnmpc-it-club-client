@@ -9,10 +9,10 @@ import panel6 from '../../assets/panel2021-6.png'
 
 const Panel2021 = () => {
     return (
-        <div>
+        <div >
             <SectionTitle heading='session 20-21'></SectionTitle>
-            <img src={banner} alt="" />
-            <div data-aos="fade-up"  className="grid md:grid-cols-3 gap-5 my-10 ">
+            <img data-aos="fade-up"  data-aos-duration="2000" src={banner} alt="" />
+            <div data-aos="fade-up"  data-aos-duration="2000"  className="grid md:grid-cols-3 gap-5 my-10 ">
                 <img src={panel1} alt="" />
                 <img src={panel2} alt="" />
                 <img className="md:h-72" src={panel3} alt="" />

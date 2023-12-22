@@ -5,7 +5,7 @@ import Panel2122 from "./Session/Panel2122";
 
 const Gallery = () => {
     return (
-        <div>
+        <div >
             <Panel2122></Panel2122>
             <Panel2021></Panel2021>
             <Panel1920></Panel1920>
