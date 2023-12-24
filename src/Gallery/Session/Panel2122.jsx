@@ -6,7 +6,7 @@ import panel3 from '../../assets/panel2022-3.png'
 const Panel2122 = () => {
     return (
         <div>
-        <SectionTitle heading='session 19-20'></SectionTitle>
+        <SectionTitle heading='session 21-22'></SectionTitle>
         <img data-aos="fade-up"  data-aos-duration="2000" src={banner} alt="" />
         <div data-aos="fade-up"  data-aos-duration="2000" className="grid md:grid-cols-3 gap-5 my-10">
             <img src={panel1} alt="" />

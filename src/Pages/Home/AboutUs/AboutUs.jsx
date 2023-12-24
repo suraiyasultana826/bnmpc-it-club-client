@@ -1,10 +1,9 @@
 import SectionTitle from "../../../Components/SectionTitle/SectionTitle";
-import img from '../../../assets/banner.jpg'
 import classWork from '../../../assets/working.jpg'
 import sitting from '../../../assets/class.png'
 const AboutUs = () => {
     return (
-        <div className="mb-30">
+        <div className="mb-30" id="about">
             <SectionTitle heading={'About Us'}></SectionTitle>
             <div className="md:flex my-5 ml-10 text-center justify-center items-center">
                 <div className="w-3/4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo cum libero voluptatibus delectus impedit possimus, dolorem tenetur laudantium a quidem culpa porro eum aut inventore enim assumenda quam labore at.

@@ -1,11 +1,17 @@
-import { Link } from 'react-router-dom';
+import { Link } from 'react-scroll';
 import logo from '../../../../assets/Official Logo.png'
 const Navbar = () => {
   const navOptions = <>
-    <li><Link to='/'><a>Home</a></Link></li>
-    <li><Link to='/gallery'><a>Gallery</a></Link></li>
-    <li><a>About us</a></li>
-    <li><a>Contact Us</a></li>
+    <li><a href='/'>Home</a></li>
+    <li><Link to='about'   spy={true} 
+      smooth={true} 
+      offset={50} 
+      duration={500} >About us</Link></li>
+    <li><Link to='footer'  spy={true} 
+      smooth={true} 
+      offset={50} 
+      duration={500} >Contact Us </Link></li>
+    <li><a href="gallery">Gallery</a></li>
   </>
     return (
         <div className="navbar bg-base-100">
@@ -27,7 +33,7 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <Link to='/register'><a className="btn bg-blue-900 text-white">Register</a></Link>
+         <a href='/register' className="btn bg-blue-900 text-white">Register</a>
         </div>
       </div>
     );
