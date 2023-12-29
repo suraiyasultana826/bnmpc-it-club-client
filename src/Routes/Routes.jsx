@@ -7,6 +7,8 @@ import Register from "../Pages/Register/Register";
 import Gallery from "../Gallery/Gallery";
 import AboutUs from "../Pages/Home/AboutUs/AboutUs";
 import Footer from "../Pages/Home/Shared/Footer/Footer";
+import Panels from "../Pages/Panels/Panels";
+import Volunteers from "../Volunteers/Volunteers";
 
  export const router = createBrowserRouter([
     {
@@ -32,6 +34,14 @@ import Footer from "../Pages/Home/Shared/Footer/Footer";
         {
           path:'footer',
           element: <Footer></Footer>
+        },
+        {
+          path:'panels',
+          element:<Panels></Panels>
+        },
+        {
+          path:'wannaSeeNewVol',
+          element:<Volunteers></Volunteers>
         }
       ]
     },

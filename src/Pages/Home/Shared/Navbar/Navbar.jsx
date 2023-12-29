@@ -12,6 +12,7 @@ const Navbar = () => {
       offset={50} 
       duration={500} >Contact Us </Link></li>
     <li><a href="gallery">Gallery</a></li>
+    <li><a href="panels">Panels</a></li>
   </>
     return (
         <div className="navbar bg-base-100">
