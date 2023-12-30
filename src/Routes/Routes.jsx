@@ -9,6 +9,7 @@ import AboutUs from "../Pages/Home/AboutUs/AboutUs";
 import Footer from "../Pages/Home/Shared/Footer/Footer";
 import Panels from "../Pages/Panels/Panels";
 import Volunteers from "../Volunteers/Volunteers";
+import GcLink from "../Pages/Register/GcLink";
 
  export const router = createBrowserRouter([
     {
@@ -42,6 +43,10 @@ import Volunteers from "../Volunteers/Volunteers";
         {
           path:'wannaSeeNewVol',
           element:<Volunteers></Volunteers>
+        },
+        {
+          path:'gcLink',
+          element:<GcLink></GcLink>
         }
       ]
     },

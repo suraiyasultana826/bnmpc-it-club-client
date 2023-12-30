@@ -2,6 +2,8 @@ import toast from 'react-hot-toast';
 import register from '../../../src/assets/register-cover.avif'
 // import {  useLocation, useNavigation } from 'react-router-dom';
 import ParticleComponent from './ParticleComponent';
+import { data } from 'autoprefixer';
+import { Link } from 'react-router-dom';
 const Register = () => {
 
 
@@ -40,7 +42,8 @@ const Register = () => {
     }
     return (
         <div>
-             <ParticleComponent />
+           
+                   <ParticleComponent />
             <div className="hero min-h-screen" style={{ backgroundImage: `url(${register})` }}>
                 <div className="hero-overlay bg-opacity-60"></div>
                 <div className="hero-content text-center text-neutral-content">
@@ -111,7 +114,12 @@ const Register = () => {
                                            
                                         </div>
                                         <div className="form-control mt-6">
-                                       <button className="btn border-none text-white font-bold bg-blue-900">Register</button>
+                                             {/* {
+                                            data.insertedId ? <button className="btn  "><a href="https://www.facebook.com/">Already  submitted</a></button> :  <button className="btn btn-primary">Submit</button>
+                                           }
+                                      */}
+                                     <Link to='/gcLink'> <button className="btn border-none text-white font-bold bg-blue-900">Register</button></Link>
+                                    
                                         </div>
                                     </form>
                                 </div>
@@ -120,6 +128,8 @@ const Register = () => {
                     </div>
                 </div>
             </div>
+               
+           
 
         </div>
     );
