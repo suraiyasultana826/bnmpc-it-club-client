@@ -4,7 +4,7 @@ import { useState } from "react";
 const Volunteers = () => {
     const [volunteers, setVolunteers] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/newVolReg')
+        fetch('https://bnmpc-itc-server.vercel.app/newVolReg')
         .then(res => res.json())
         .then(data => setVolunteers(data));
     }, [])

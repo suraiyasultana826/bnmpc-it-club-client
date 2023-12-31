@@ -6,14 +6,14 @@ const AboutUs = () => {
         <div className="mb-30" id="about">
             <SectionTitle heading={'About Us'}></SectionTitle>
             <div className="md:flex my-5 ml-10 text-center justify-center items-center">
-                <div className="w-3/4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo cum libero voluptatibus delectus impedit possimus, dolorem tenetur laudantium a quidem culpa porro eum aut inventore enim assumenda quam labore at.
-                Dolorem architecto unde reiciendis tiis temporibus necessitatibus laborum doloremque unde quia. aliquam.</div>
-                <div  className='lg:w-1/2 relative ml-5'>
+                <div className="w-3/4 font-bold">The main purpose of the BNMPC IT club is to allow it is inquisitive members to pursue relevant opportunities in growing their repertoire of skills in the world of technology.
+                    As a means to this end,the majority of our workshops,projects,events revolve around 5 of the most prevalent topics in this sphere,which will surely prove to be an invaluable asset in your journey. </div>
+                <div className='lg:w-1/2 relative ml-5'>
                     <img className='w-3/4 rounded-lg border-8' src={classWork} alt="" />
                     <img className=' w-1/2 absolute right-12 top-36 rounded-lg border-8' src={sitting} alt="" />
                 </div>
             </div>
-            
+
         </div>
     );
 };

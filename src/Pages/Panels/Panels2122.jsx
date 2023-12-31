@@ -6,7 +6,7 @@ import Panels2122Card from "./Panels2122Card";
 const Panels2122 = () => {
     const [panels, setPanels] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/panels2122')
+        fetch('https://bnmpc-itc-server.vercel.app/panels2122')
         .then(res => res.json())
         .then(data => setPanels(data));
     }, [])

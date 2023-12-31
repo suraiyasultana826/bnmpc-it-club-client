@@ -2,13 +2,12 @@ import toast from 'react-hot-toast';
 import register from '../../../src/assets/register-cover.avif'
 // import {  useLocation, useNavigation } from 'react-router-dom';
 import ParticleComponent from './ParticleComponent';
-import { data } from 'autoprefixer';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 const Register = () => {
 
 
-    // const location = useLocation();
-    // const navigate = useNavigation();
+    const location = useLocation();
+    const navigate = useNavigate();
 
     const registerVolunteer = event => {
         event.preventDefault();
@@ -24,7 +23,7 @@ const Register = () => {
         const newVolunteer = {name, email, klass, roll, section, number, fbId, date};
         console.log(newVolunteer);
 
-        fetch('http://localhost:5000/newVolReg', {
+        fetch('https://bnmpc-itc-server.vercel.app/newVolReg', {
             method:'POST',
             headers: {
                 'content-type' : 'application/json'
@@ -36,7 +35,7 @@ const Register = () => {
             console.log(data);
             if(data.insertedId){
                 toast.success('Volunteer Registration Successful!')
-                // navigate(location?.state ? location.state : '/')
+                navigate(location?.state ? location.state : '/gcLink')
             }
         })
     }
@@ -118,7 +117,9 @@ const Register = () => {
                                             data.insertedId ? <button className="btn  "><a href="https://www.facebook.com/">Already  submitted</a></button> :  <button className="btn btn-primary">Submit</button>
                                            }
                                       */}
-                                     <Link to='/gcLink'> <button className="btn border-none text-white font-bold bg-blue-900">Register</button></Link>
+                                     {/* <Link to='/gcLink'> */}
+                                         <button className="btn border-none text-white font-bold bg-blue-900">Register</button>
+                                         {/* </Link> */}
                                     
                                         </div>
                                     </form>
