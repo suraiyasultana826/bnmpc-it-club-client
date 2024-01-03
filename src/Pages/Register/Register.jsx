@@ -19,8 +19,8 @@ const Register = () => {
         const section = form.section.value;
         const number = form.number.value;
         const fbId = form.fbId.value;
-        const date = form.date.value;
-        const newVolunteer = {name, email, klass, roll, section, number, fbId, date};
+        // const date = form.date.value;
+        const newVolunteer = {name, email, klass, roll, section, number, fbId};
         console.log(newVolunteer);
 
         fetch('https://bnmpc-itc-server.vercel.app/newVolReg', {
@@ -62,19 +62,19 @@ const Register = () => {
                                             </label>
                                             <input type="text" placeholder="name" name='name' className="input input-bordered" required />
                                         </div>
-                                       <div className='md:flex gap-5'>
+                                       <div className=''>
                                        <div className="form-control">
                                             <label className="label">
                                                 <span className="label-text text-white">Email</span>
                                             </label>
                                             <input type="email" placeholder="email" name='email' className="input input-bordered" required />
                                         </div>
-                                        <div className="form-control">
+                                        {/* <div className="form-control">
                                             <label className="label">
                                                 <span className="label-text text-white">Date</span>
                                             </label>
                                             <input type="date"  name='date' className="input input-bordered text-black" required />
-                                        </div>
+                                        </div> */}
                                        </div>
                                       <div className='md:flex gap-5'>
                                       <div className="form-control">

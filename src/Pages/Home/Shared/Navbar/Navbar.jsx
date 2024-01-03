@@ -7,12 +7,25 @@ const Navbar = () => {
       smooth={true} 
       offset={50} 
       duration={500} >About us</Link></li>
+    <li><Link to='mailBox'   spy={true} 
+      smooth={true} 
+      offset={50} 
+      duration={500} >Mail Box</Link></li>
     <li><Link to='footer'  spy={true} 
       smooth={true} 
       offset={50} 
       duration={500} >Contact Us </Link></li>
     <li><a href="gallery">Gallery</a></li>
-    <li><a href="panels">Panels</a></li>
+    
+    <li>
+        <details>
+          <summary>Administrative Committee</summary>
+          <ul className="p-2">
+            <li><a href='admin'>Admin</a></li>
+            <li><a href="panels">Panel</a></li>
+          </ul>
+        </details>
+      </li>
   </>
     return (
         <div className="navbar bg-base-100">
@@ -34,7 +47,7 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-         <a href='/register' className="btn bg-blue-900 text-white btn-disabled">Register</a>
+         <a href='/register' className="btn bg-blue-900 text-white ">Register</a>
         </div>
       </div>
     );

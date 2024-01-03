@@ -6,7 +6,7 @@ const Panels2122Card = ({panel}) => {
         <figure><img className="rounded-full w-48" src={image} alt="panel" /></figure>
         <div className="card-body">
           <h2 className="card-title">{name}</h2>
-          <p className="card-title">{position}</p>
+          <p className="md:card-title">{position}</p>
           <p>{university}</p>
          
         </div>

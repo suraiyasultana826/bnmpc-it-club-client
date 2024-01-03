@@ -10,6 +10,7 @@ import Footer from "../Pages/Home/Shared/Footer/Footer";
 import Panels from "../Pages/Panels/Panels";
 import Volunteers from "../Volunteers/Volunteers";
 import GcLink from "../Pages/Register/GcLink";
+import Admin from "../Admin/Admin";
 
  export const router = createBrowserRouter([
     {
@@ -47,6 +48,10 @@ import GcLink from "../Pages/Register/GcLink";
         {
           path:'gcLink',
           element:<GcLink></GcLink>
+        },
+        {
+          path:'admin',
+          element:<Admin></Admin>
         }
       ]
     },

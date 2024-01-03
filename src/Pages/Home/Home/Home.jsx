@@ -1,5 +1,8 @@
+import Achievements from "../../../Achievements/Achievements";
 import Faq from "../../../FAQ/Faq";
 import Magazine from "../../../Magazine/Magazine";
+import MailBox from "../../../MailBox/MailBox";
+import RealCurioCard from "../../../RealCurioCard/RealCurioCard";
 import Sectors from "../../../Sectors/Sectors";
 import CurioCards from "../../../curioCards/CurioCards";
 import AboutUs from "../AboutUs/AboutUs";
@@ -11,11 +14,14 @@ const Home = () => {
         <div>
             <Bannerr></Bannerr>
             <CurioCards></CurioCards>
+            <RealCurioCard></RealCurioCard>
             <AboutUs></AboutUs>
+            <Achievements></Achievements>
             <Sectors></Sectors>
             <Magazine></Magazine>
             <ChooseUs></ChooseUs>
             <Faq></Faq>
+            <MailBox></MailBox>
             
         </div>
     );

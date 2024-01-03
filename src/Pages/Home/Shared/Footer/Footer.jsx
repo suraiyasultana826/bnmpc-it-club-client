@@ -2,9 +2,11 @@ import logo from '../../../../assets/Official Logo.png'
 import { FaFacebook } from "react-icons/fa6";
 import { FaInstagram } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
+import ScrollToTop from "react-scroll-to-top";
 const Footer = () => {
     return (
         <div id='footer'>
+             <ScrollToTop smooth top='20' color='#00008B' />
             <footer className="footer p-10 bg-base-200 text-base-content">
                 <aside>
                   <img className='w-20 h-20' src={logo} alt="" />
