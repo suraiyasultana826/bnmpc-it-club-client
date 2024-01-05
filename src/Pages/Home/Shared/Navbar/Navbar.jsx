@@ -46,9 +46,9 @@ const Navbar = () => {
            {navOptions} 
           </ul>
         </div>
-        <div className="navbar-end">
+        {/* <div className="navbar-end">
          <a href='/register' className="btn bg-blue-900 text-white ">Register</a>
-        </div>
+        </div> */}
       </div>
     );
 };

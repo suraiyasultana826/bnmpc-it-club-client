@@ -9,8 +9,8 @@ import AboutUs from "../Pages/Home/AboutUs/AboutUs";
 import Footer from "../Pages/Home/Shared/Footer/Footer";
 import Panels from "../Pages/Panels/Panels";
 import Volunteers from "../Volunteers/Volunteers";
-import GcLink from "../Pages/Register/GcLink";
 import Admin from "../Admin/Admin";
+import GcLinkCollection from "../Pages/Register/GcLinkCollection";
 
  export const router = createBrowserRouter([
     {
@@ -47,12 +47,13 @@ import Admin from "../Admin/Admin";
         },
         {
           path:'gcLink',
-          element:<GcLink></GcLink>
+          element:<GcLinkCollection></GcLinkCollection>
         },
         {
           path:'admin',
           element:<Admin></Admin>
-        }
+        },
+       
       ]
     },
   ]);

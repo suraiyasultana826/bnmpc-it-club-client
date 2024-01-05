@@ -38,7 +38,7 @@ const Footer = () => {
 
             </footer>
             <aside className="footer footer-center p-4 bg-base-300 text-base-content">
-                <p>Copyright © 2023 - All right reserved by BNMPC IT CLUB</p>
+                <p>Copyright © 2024 - All right reserved by BNMPC IT CLUB</p>
             </aside>
 
         </div>
