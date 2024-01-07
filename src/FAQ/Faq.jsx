@@ -30,7 +30,7 @@ const Faq = () => {
                             <div className="collapse-title text-xl font-medium">
                             Is it free to join the BNMPC IT club?
                             </div>
-                            <div className="collapse-content">
+                            <div className="collapse-content bg-white text-black">
                                 <p>Yes,it is totally free to join BNMPCITC.</p>
                             </div>
                         </div>
@@ -40,7 +40,7 @@ const Faq = () => {
                             Are “general members” and “volunteers” same thing?
 
                             </div>
-                            <div className="collapse-content">
+                            <div className="collapse-content bg-white text-black">
                                 <p>Yes,both are same.In BNMPCITC the term “general member” doesn’t even exist.</p>
                             </div>
                         </div>
@@ -50,7 +50,7 @@ const Faq = () => {
                             Why BNMPC ITC is the best?
 
                             </div>
-                            <div className="collapse-content">
+                            <div className="collapse-content bg-white text-black">
                                 <p>Undoubtedly BNMPCITC is the best in BNMPC.You can get into a skillful and friendly circle through this club.Again the workshops will enlighten your spirit to learn something new.You can learn management,leadership and many more skill without any problems. Also you will get some  seniors who will always guide you to be on the right path.
 </p>
                             </div>
