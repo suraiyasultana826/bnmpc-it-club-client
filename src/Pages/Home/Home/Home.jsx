@@ -8,11 +8,13 @@ import CurioCards from "../../../curioCards/CurioCards";
 import AboutUs from "../AboutUs/AboutUs";
 import Bannerr from "../Banner/Bannerr";
 import ChooseUs from "../ChooseUs/ChooseUs";
+import Event from "../Event/Event";
 
 const Home = () => {
     return (
         <div>
             <Bannerr></Bannerr>
+            <Event></Event>
             <CurioCards></CurioCards>
             <RealCurioCard></RealCurioCard>
             <AboutUs></AboutUs>
