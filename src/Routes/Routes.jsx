@@ -11,6 +11,8 @@ import Panels from "../Pages/Panels/Panels";
 import Volunteers from "../Volunteers/Volunteers";
 import Admin from "../Admin/Admin";
 import GcLinkCollection from "../Pages/Register/GcLinkCollection";
+import Informativa from "../Pages/Home/Event/Informativa";
+import Participants from "../Pages/Home/Event/Participants";
 
  export const router = createBrowserRouter([
     {
@@ -52,6 +54,14 @@ import GcLinkCollection from "../Pages/Register/GcLinkCollection";
         {
           path:'admin',
           element:<Admin></Admin>
+        },
+        {
+          path: 'informativa',
+          element:<Informativa></Informativa>
+        },
+        {
+          path:'participants',
+          element:<Participants></Participants>
         },
        
       ]

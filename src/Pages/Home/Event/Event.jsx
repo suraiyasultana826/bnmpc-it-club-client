@@ -1,5 +1,6 @@
+import { Link } from 'react-scroll';
 import SectionTitle from '../../../Components/SectionTitle/SectionTitle';
-import eventBanner from '../../../assets/Infa 3.0 Banner.png'
+import eventBanner from '../../../assets/InfaBanner.png'
 const Event = () => {
     return (
         <div>
@@ -12,6 +13,7 @@ the digital realm meets its ultimate playground! A big shoutout to all the IT CL
 for them. So volunteers, dive into the dynamic world of IT as we take you for  an adrenaline- packed lineup featuring mind boggling quiz competitions, live segments buzzing with excitement and creative submission-bases challenges that will set your imagination on fire. Stay tuned for more updates and let's make this online tech fest an experience to remember!
 
             </p>
+           <a href="/informativa"> <button className="btn border-none text-white font-bold mt-5 ml-5 bg-blue-900">Register Now!</button></a> 
             
         </div>
     );
