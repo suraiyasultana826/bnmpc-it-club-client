@@ -13,6 +13,7 @@ import Admin from "../Admin/Admin";
 import GcLinkCollection from "../Pages/Register/GcLinkCollection";
 import Informativa from "../Pages/Home/Event/Informativa";
 import Participants from "../Pages/Home/Event/Participants";
+import OnlyMail from "../Volunteers/OnlyMail";
 
  export const router = createBrowserRouter([
     {
@@ -63,6 +64,10 @@ import Participants from "../Pages/Home/Event/Participants";
           path:'participants',
           element:<Participants></Participants>
         },
+        {
+          path:'onlyMails',
+          element:<OnlyMail></OnlyMail>
+        }
        
       ]
     },
