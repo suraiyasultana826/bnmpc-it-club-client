@@ -14,6 +14,7 @@ import GcLinkCollection from "../Pages/Register/GcLinkCollection";
 import Informativa from "../Pages/Home/Event/Informativa";
 import Participants from "../Pages/Home/Event/Participants";
 import OnlyMail from "../Volunteers/OnlyMail";
+import Volunteers2 from "../Volunteers/Volunteers2";
 
  export const router = createBrowserRouter([
     {
@@ -47,6 +48,10 @@ import OnlyMail from "../Volunteers/OnlyMail";
         {
           path:'wannaSeeNewVol',
           element:<Volunteers></Volunteers>
+        },
+        {
+          path:'wannaSeeNewVol2',
+          element:<Volunteers2></Volunteers2>
         },
         {
           path:'gcLink',

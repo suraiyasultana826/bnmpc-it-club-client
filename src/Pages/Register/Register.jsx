@@ -22,8 +22,9 @@ const Register = () => {
         // const date = form.date.value;
         const newVolunteer = {name, email, klass, roll, section, number, fbId};
         console.log(newVolunteer);
+        // https://bnmpc-itc-server.vercel.app/newVolReg2
 
-        fetch('https://bnmpc-itc-server.vercel.app/newVolReg', {
+        fetch('https://bnmpc-itc-server.vercel.app/newVolReg2', {
             method:'POST',
             headers: {
                 'content-type' : 'application/json'
@@ -69,12 +70,7 @@ const Register = () => {
                                             </label>
                                             <input type="email" placeholder="email" name='email' className="input input-bordered" required />
                                         </div>
-                                        {/* <div className="form-control">
-                                            <label className="label">
-                                                <span className="label-text text-white">Date</span>
-                                            </label>
-                                            <input type="date"  name='date' className="input input-bordered text-black" required />
-                                        </div> */}
+                                        
                                        </div>
                                       <div className='md:flex gap-5'>
                                       <div className="form-control">
