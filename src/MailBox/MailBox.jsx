@@ -36,7 +36,7 @@ const MailBox = () => {
             ref={form}
             onSubmit={sendEmail}
           >
-            <inputr
+            <input
             
               type="text"
               name="user_name"
