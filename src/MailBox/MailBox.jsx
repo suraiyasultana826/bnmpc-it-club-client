@@ -27,26 +27,42 @@ const MailBox = () => {
    
     
     return (
-      <div id='mailBox'>
+        <div id="mailBox">
         <SectionTitle heading="Mail Box"></SectionTitle>
-          <div className='md:flex justify-items-center items-center justify-around'>
-          <div>
-                <Lottie animationData={email} className='w-1/2 ml-14'></Lottie>
-            </div>
-            <form className='px-10 mb-10' ref={form} onSubmit={sendEmail}>
-                <label>Name: </label>
-                <input type="text" name="user_name" className="input input-bordered w-full max-w-xs" placeholder='Name' /> <br />
-                <label>Email:  </label>
-                <input type="email" className="input input-bordered w-full max-w-xs mt-2" placeholder='Email' name="user_email" /> <br />
-
-                <label>Message:</label>
-                <textarea name="message" placeholder='Type here' className="input  input-bordered input-lg w-full max-w-xs mt-2" />
-                <br />
-                <input type="submit" className='btn bg-blue-800 text-white' value="Send" />
-            </form>
-
+        <div className="md:flex justify-items-center items-center justify-around">
+          <Lottie animationData={email} className=""></Lottie>
+          <form
+            className="px-10 mb-10 mt-10 items-center"
+            ref={form}
+            onSubmit={sendEmail}
+          >
+            <inputr
             
-
+              type="text"
+              name="user_name"
+              className="input input-bordered w-full max-w-xs my-1"
+              placeholder="Name"
+            />
+            <input
+              type="email"
+              className="input input-bordered w-full max-w-xs my-1"
+              placeholder="Email"
+              name="user_email"
+            />
+            <textarea
+              name="message"
+              placeholder="Type here"
+              className="input input-bordered w-full max-w-xs my-1 px-4 pt-2"
+              cols="20"
+            />
+            <div className="w-full">
+              <input
+                type="submit"
+                className="btn bg-blue-800 text-white"
+                value="Send"
+              />
+            </div>
+          </form>
         </div>
       </div>
     );
