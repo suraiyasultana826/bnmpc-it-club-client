@@ -1,135 +1,34 @@
-import toast from 'react-hot-toast';
-import register from '../../../src/assets/register-cover.avif'
-// import {  useLocation, useNavigation } from 'react-router-dom';
-import ParticleComponent from './ParticleComponent';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useState } from "react";
+import { motion } from "motion/react";
+import { Toaster } from "sonner";
+import ShaderBackground from "./ShaderBackground";
+import IntroAnimation from "./IntroAnimation";
+import RecruitmentForm from "./RecruitmentForm";
+
 const Register = () => {
+  const [introDone, setIntroDone] = useState(false);
 
+  return (
+    <div className="relative min-h-screen overflow-hidden text-white">
+      <ShaderBackground />
 
-    const location = useLocation();
-    const navigate = useNavigate();
+      {!introDone && <IntroAnimation onDone={() => setIntroDone(true)} />}
 
-    const registerVolunteer = event => {
-        event.preventDefault();
-        const form = event.target;
-        const name = form.name.value;
-        const email = form.email.value;
-        const klass = form.class.value;
-        const roll = form.roll.value;
-        const section = form.section.value;
-        const number = form.number.value;
-        const fbId = form.fbId.value;
-        // const date = form.date.value;
-        const newVolunteer = {name, email, klass, roll, section, number, fbId};
-        console.log(newVolunteer);
-        // https://bnmpc-itc-server.vercel.app/newVolReg2
+      <motion.main
+        initial={{ opacity: 0 }}
+        animate={{ opacity: introDone ? 1 : 0 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+        className="relative z-10 flex min-h-screen flex-col items-center justify-center px-4 py-16 sm:py-20"
+      >
+        <RecruitmentForm />
+        <footer className="mt-12 text-center font-mono text-[10px] uppercase tracking-[0.3em] text-slate-400/70">
+          © BNMPC IT Club · Birshreshtha Noor Mohammad Public College
+        </footer>
+      </motion.main>
 
-        fetch('https://bnmpc-itc-server.vercel.app/newVolReg2', {
-            method:'POST',
-            headers: {
-                'content-type' : 'application/json'
-            },
-            body: JSON.stringify(newVolunteer)
-        })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data);
-            if(data.insertedId){
-                toast.success('Volunteer Registration Successful!')
-                navigate(location?.state ? location.state : '/gcLink')
-            }
-        })
-    }
-    return (
-        <div>
-           
-                   <ParticleComponent />
-            <div className="hero min-h-screen" style={{ backgroundImage: `url(${register})` }}>
-                <div className="hero-overlay bg-opacity-60"></div>
-                <div className="hero-content text-center text-neutral-content">
-                    <div className="max-w-md">
-                        <div className="hero ">
-                            <div className="hero-content ">
-                                <div className="text-center ">
-                                 
-                                   
-                                </div>
-                                <div className="card shrink-0 w-full shadow-2xl bg-transparent">
-                                <h1 className="text-5xl font-bold">Register now!</h1>
-                                    <form onSubmit={registerVolunteer} className="card-body">
-                                        <div className="form-control">
-                                            <label className="label">
-                                                <span className="label-text text-white">Name</span>
-                                            </label>
-                                            <input type="text" placeholder="name" name='name' className="input input-bordered" required />
-                                        </div>
-                                       <div className=''>
-                                       <div className="form-control">
-                                            <label className="label">
-                                                <span className="label-text text-white">Email</span>
-                                            </label>
-                                            <input type="email" placeholder="email" name='email' className="input input-bordered" required />
-                                        </div>
-                                        
-                                       </div>
-                                      <div className='md:flex gap-5'>
-                                      <div className="form-control">
-                                            <label className="label">
-                                                <span className="label-text text-white">Class</span>
-                                            </label>
-                                            <input type="" placeholder="class" name='class' className="input input-bordered text-black" required />
-                                        </div>
-                                        <div className="form-control">
-                                            <label className="label">
-                                                <span className="label-text text-white">Section</span>
-                                            </label>
-                                            <input type="text" placeholder="section" name='section' className="input input-bordered text-black" required />
-                                        </div>
-                                      </div>
-                                       <div className='md:flex gap-5'>
-                                       <div className="form-control">
-                                            <label className="label">
-                                                <span className="label-text text-white">Roll</span>
-                                            </label>
-                                            <input type="text" placeholder="roll" name='roll' className="input input-bordered text-black" required />
-                                        </div>
-                                        <div className="form-control">
-                                            <label className="label">
-                                                <span className="label-text text-white">Contact Number</span>
-                                            </label>
-                                            <input type="text" placeholder="contact number" name='number' className="input input-bordered text-black" required />
-                                           
-                                        </div>
-                                       </div>
-                                        <div className="form-control">
-                                            <label className="label">
-                                                <span className="label-text text-white">Facebook ID Link</span>
-                                            </label>
-                                            <input type="text" placeholder="facebook id link" name='fbId' className="input input-bordered text-black" required />
-                                           
-                                        </div>
-                                        <div className="form-control mt-6">
-                                             {/* {
-                                            data.insertedId ? <button className="btn  "><a href="https://www.facebook.com/">Already  submitted</a></button> :  <button className="btn btn-primary">Submit</button>
-                                           }
-                                      */}
-                                     {/* <Link to='/gcLink'> */}
-                                         <button className="btn border-none text-white font-bold bg-blue-900">Register</button>
-                                         {/* </Link> */}
-                                    
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-               
-           
-
-        </div>
-    );
+      <Toaster theme="dark" position="top-center" richColors />
+    </div>
+  );
 };
 
 export default Register;

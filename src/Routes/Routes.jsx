@@ -16,7 +16,17 @@ import Participants from "../Pages/Home/Event/Participants";
 import OnlyMail from "../Volunteers/OnlyMail";
 import Volunteers2 from "../Volunteers/Volunteers2";
 
+import ITCAdmin from "../Pages/ITCAdmin/ITCAdmin";
+
  export const router = createBrowserRouter([
+    {
+      path: 'register',
+      element: <Register></Register>
+    },
+    {
+      path: 'itcadmin',
+      element: <ITCAdmin></ITCAdmin>
+    },
     {
       path: "/",
       element: <Main></Main>,
@@ -24,10 +34,6 @@ import Volunteers2 from "../Volunteers/Volunteers2";
         {
             path: '/',
             element: <Home></Home>
-        },
-        {
-          path: 'register',
-          element: <Register></Register>
         },
         {
           path: 'gallery',
