@@ -3,7 +3,7 @@ import * as XLSX from "xlsx";
 import { Users, Link2, ToggleLeft, LogOut, Download, RefreshCw, Save, ChevronDown, Trash2 } from "lucide-react";
 import logo from "../../assets/ITC LOGO.png";
 
-const SERVER = "https://bnmpc-itc-server.vercel.app";
+const SERVER = "https://bnmpc-it-club-server.vercel.app";
 
 const TABS = [
   { id: "registrations", label: "Registrations", icon: Users },
@@ -57,11 +57,27 @@ export default function AdminDashboard({ onLogout }) {
 }
 
 // ── Registrations ─────────────────────────────────────────────────────────────
+const classGroupFor = (className) => {
+  const value = String(className || "").trim().toUpperCase();
+  if (!value) return "Unknown";
+
+  if (["VI", "VII", "VIII", "IX", "X", "6", "7", "8", "9", "10", "CLASS VI", "CLASS VII", "CLASS VIII", "CLASS IX", "CLASS X"].includes(value) || value.startsWith("CLASS ") && ["VI", "VII", "VIII", "IX", "X"].includes(value.replace("CLASS ", ""))) {
+    return "School";
+  }
+
+  if (["XI", "11", "CLASS XI"].includes(value)) {
+    return "College";
+  }
+
+  return "Unknown";
+};
+
 function RegistrationsTab() {
   const [data, setData]               = useState([]);
   const [loading, setLoading]         = useState(true);
   const [years, setYears]             = useState([]);
   const [selectedYear, setSelectedYear] = useState("all");
+  const [groupFilter, setGroupFilter] = useState("all");
   const [deleting, setDeleting]       = useState(null);
 
   const load = (year) => {
@@ -91,10 +107,15 @@ function RegistrationsTab() {
     setDeleting(null);
   };
 
-  const downloadExcel = () => {
-    const rows = data.map((r) => ({
+  const filteredData = groupFilter === "all"
+    ? data
+    : data.filter((row) => classGroupFor(row.className) === groupFilter);
+
+  const downloadExcel = (group = groupFilter) => {
+    const rows = (group === "all" ? data : data.filter((r) => classGroupFor(r.className) === group)).map((r) => ({
       "Name":      r.fullName,
       "Class":     r.className,
+      "Group":     classGroupFor(r.className),
       "Roll":      r.roll,
       "Section":   r.section,
       "Email":     r.email,
@@ -104,11 +125,11 @@ function RegistrationsTab() {
     }));
     const ws = XLSX.utils.json_to_sheet(rows);
     const wb = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, "Registrations");
-    XLSX.writeFile(wb, `ITC_Registrations_${selectedYear === "all" ? "All" : selectedYear}.xlsx`);
+    XLSX.utils.book_append_sheet(wb, ws, group === "all" ? "Registrations" : group);
+    XLSX.writeFile(wb, `ITC_Registrations_${selectedYear === "all" ? "All" : selectedYear}_${group === "all" ? "All" : group}.xlsx`);
   };
 
-  const COLS = ["Name", "Class", "Roll", "Section", "Email", "Contact", "Facebook", "Submitted", ""];
+  const COLS = ["Name", "Class", "Group", "Roll", "Section", "Email", "Contact", "Facebook", "Submitted", ""];
 
   return (
     <div className="w-full">
@@ -117,7 +138,7 @@ function RegistrationsTab() {
           <h2 className="text-lg font-semibold text-white">Registrations</h2>
           <p className="text-xs text-slate-500">{data.length} record{data.length !== 1 ? "s" : ""} found</p>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex flex-wrap items-center gap-3">
           <div className="relative">
             <select
               value={selectedYear}
@@ -129,15 +150,37 @@ function RegistrationsTab() {
             </select>
             <ChevronDown className="pointer-events-none absolute right-2 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
           </div>
+
+          <div className="relative">
+            <select
+              value={groupFilter}
+              onChange={(e) => setGroupFilter(e.target.value)}
+              className="appearance-none rounded-xl border border-white/10 bg-white/5 py-2 pl-3 pr-8 text-sm text-white outline-none focus:border-cyan-400/30"
+            >
+              <option value="all">All groups</option>
+              <option value="School">School GC</option>
+              <option value="College">College GC</option>
+            </select>
+            <ChevronDown className="pointer-events-none absolute right-2 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
+          </div>
+
           <button onClick={() => load(selectedYear)}
             className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-slate-300 hover:bg-white/8 transition-all">
             <RefreshCw className="h-4 w-4" /> Refresh
           </button>
-          <button onClick={downloadExcel} disabled={!data.length}
+          <button onClick={() => downloadExcel("School")} disabled={!data.some((r) => classGroupFor(r.className) === "School")}
             className="flex items-center gap-2 rounded-xl border border-cyan-400/20 bg-cyan-500/10 px-3 py-2 text-sm text-cyan-300 hover:bg-cyan-500/15 transition-all disabled:opacity-40">
-            <Download className="h-4 w-4" /> Download Excel
+            <Download className="h-4 w-4" /> School Excel
+          </button>
+          <button onClick={() => downloadExcel("College")} disabled={!data.some((r) => classGroupFor(r.className) === "College")}
+            className="flex items-center gap-2 rounded-xl border border-violet-400/20 bg-violet-500/10 px-3 py-2 text-sm text-violet-300 hover:bg-violet-500/15 transition-all disabled:opacity-40">
+            <Download className="h-4 w-4" /> College Excel
           </button>
         </div>
+      </div>
+
+      <div className="mb-4 text-xs text-slate-400">
+        Showing: <span className="font-medium text-white">{groupFilter === "all" ? "All registrations" : `${groupFilter} registrations`}</span>
       </div>
 
       <div className="overflow-x-auto rounded-2xl border border-white/6">
@@ -154,12 +197,13 @@ function RegistrationsTab() {
           <tbody>
             {loading ? (
               <tr><td colSpan={COLS.length} className="py-12 text-center text-slate-500">Loading...</td></tr>
-            ) : data.length === 0 ? (
-              <tr><td colSpan={COLS.length} className="py-12 text-center text-slate-500">No registrations found.</td></tr>
-            ) : data.map((row, i) => (
+            ) : filteredData.length === 0 ? (
+              <tr><td colSpan={COLS.length} className="py-12 text-center text-slate-500">No registrations found for this group.</td></tr>
+            ) : filteredData.map((row, i) => (
               <tr key={row._id || i} className="border-b border-white/4 hover:bg-white/[0.02] transition-colors">
                 <td className="px-4 py-3 text-white whitespace-nowrap">{row.fullName}</td>
                 <td className="px-4 py-3 text-slate-300 whitespace-nowrap">{row.className}</td>
+                <td className="px-4 py-3 text-slate-300 whitespace-nowrap">{classGroupFor(row.className)}</td>
                 <td className="px-4 py-3 text-slate-300">{row.roll}</td>
                 <td className="px-4 py-3 text-slate-300">{row.section}</td>
                 <td className="px-4 py-3 text-slate-300 whitespace-nowrap">{row.email}</td>

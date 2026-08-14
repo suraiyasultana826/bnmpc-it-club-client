@@ -3,7 +3,7 @@ import { motion } from "motion/react";
 import { Lock, User, Eye, EyeOff, LogIn } from "lucide-react";
 import logo from "../../assets/ITC LOGO.png";
 
-const SERVER = "https://bnmpc-itc-server.vercel.app";
+const SERVER = "https://bnmpc-it-club-server.vercel.app";
 
 export default function AdminLogin({ onLogin }) {
   const [username, setUsername] = useState("");
@@ -17,7 +17,7 @@ export default function AdminLogin({ onLogin }) {
     setLoading(true);
     setError("");
     try {
-      const res = await fetch(`${SERVER}/admin/login`, {
+      const res = await fetch(`${SERVER}/itcadmin`, {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify({ username, password }),

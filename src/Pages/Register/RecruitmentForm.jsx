@@ -7,7 +7,7 @@ import { User, Mail, Phone, GraduationCap, Hash, Users, Send, CheckCircle2, Exte
 import { FaFacebook } from "react-icons/fa";
 import { toast } from "sonner";
 
-const SERVER = "https://bnmpc-itc-server.vercel.app";
+const SERVER = "https://bnmpc-it-club-server.vercel.app";
 
 const schema = z.object({
   fullName: z.string().trim().min(2, "Enter your full name").max(80),
@@ -18,15 +18,37 @@ const schema = z.object({
   contact: z.string().trim().min(6, "Enter a valid phone number").max(20),
   facebook: z.string().trim().url("Enter a valid Facebook profile URL").max(200)
     .refine((v) => /facebook\.com|fb\.com|fb\.me/i.test(v), { message: "Must be a Facebook profile URL" }),
+  termsAccepted: z.boolean().refine((value) => value === true, {
+    message: "Please confirm that your information is correct and your contact details/Facebook are active.",
+  }),
 });
 
 const SECTIONS = Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i));
+const CLASS_OPTIONS = ["VI", "VII", "VIII", "IX", "X", "XI"];
+const OFFICIAL_FB_URL = "https://www.facebook.com/bnmpcitclub";
 
 const DEFAULT_GC_LINKS = [
-  { id: "gca",    label: "Join College GC-A", url: "https://m.me/j/AbYourCollegeGCA/" },
-  { id: "gcb",    label: "Join College GC-B", url: "https://m.me/j/AbYourCollegeGCB/" },
-  { id: "school", label: "Join School GC",    url: "https://m.me/j/AbYourSchoolGC/"   },
+  { id: "school", label: "Join School GC", url: OFFICIAL_FB_URL },
+  { id: "gca", label: "Join College GC-A", url: OFFICIAL_FB_URL },
+  { id: "gcb", label: "Join College GC-B", url: OFFICIAL_FB_URL },
 ];
+
+const getVisibleGcLinks = (selectedClass, gcLinks) => {
+  if (!selectedClass) return gcLinks;
+
+  const schoolClasses = new Set(["VI", "VII", "VIII", "IX", "X"]);
+  const collegeClasses = new Set(["XI"]);
+
+  if (schoolClasses.has(selectedClass)) {
+    return gcLinks.filter((gc) => gc.id === "school");
+  }
+
+  if (collegeClasses.has(selectedClass)) {
+    return gcLinks.filter((gc) => gc.id === "gca" || gc.id === "gcb");
+  }
+
+  return gcLinks;
+};
 
 function FieldIcon({ children }) {
   return (
@@ -68,9 +90,11 @@ export default function RecruitmentForm() {
     });
   }, []);
 
-  const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm({
+  const { register, handleSubmit, watch, formState: { errors, isSubmitting } } = useForm({
     resolver: zodResolver(schema),
   });
+  const selectedClass = watch("className") || "";
+  const visibleGcLinks = getVisibleGcLinks(selectedClass, gcLinks);
 
   const onSubmit = async (data) => {
     try {
@@ -146,7 +170,7 @@ export default function RecruitmentForm() {
           </div>
 
           <div className="mt-7 flex flex-col gap-3">
-            {gcLinks.map((gc) => (
+            {(visibleGcLinks.length ? visibleGcLinks : gcLinks).map((gc) => (
               <a key={gc.id} href={gc.url} target="_blank" rel="noopener noreferrer"
                 className="smoke-btn flex items-center justify-between gap-2">
                 <span>{gc.label}</span>
@@ -156,7 +180,7 @@ export default function RecruitmentForm() {
           </div>
 
           <p className="mt-3 text-center font-mono text-[10px] uppercase tracking-[0.2em] text-cyan-300/50">
-            Please join only one group
+            Please join only one GC. School GC is for Class VI–X, and College GC A/B is for Class XI.
           </p>
 
           <div className="mt-4 rounded-xl border border-amber-400/20 bg-amber-400/5 px-4 py-3">
@@ -178,6 +202,26 @@ export default function RecruitmentForm() {
   }
 
   // ── Form ──────────────────────────────────────────────────────────
+  if (statusLoading) {
+    return (
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4 }}
+        className="relative mx-auto w-full max-w-xl"
+      >
+        <div className="glass-card p-8 text-center sm:p-10">
+          <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full border border-cyan-400/30 bg-cyan-400/10">
+            <Loader2 className="h-5 w-5 animate-spin text-cyan-300" />
+          </div>
+          <p className="mt-4 font-mono text-[10px] uppercase tracking-[0.25em] text-cyan-200/75">
+            Loading registration status
+          </p>
+        </div>
+      </motion.div>
+    );
+  }
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -214,7 +258,12 @@ export default function RecruitmentForm() {
           <div className="grid gap-4 sm:grid-cols-3">
             <Field label="Class" error={errors.className?.message}>
               <FieldIcon><GraduationCap className="h-4 w-4" /></FieldIcon>
-              <input {...register("className")} placeholder="e.g. Class 10" className={inputBase} />
+              <select {...register("className")} defaultValue="" className={inputBase + " appearance-none"}>
+                <option value="" disabled>Select class</option>
+                {CLASS_OPTIONS.map((cls) => (
+                  <option key={cls} value={cls} className="bg-[#0a1224]">{cls}</option>
+                ))}
+              </select>
             </Field>
             <Field label="Roll" error={errors.roll?.message}>
               <FieldIcon><Hash className="h-4 w-4" /></FieldIcon>
@@ -245,6 +294,26 @@ export default function RecruitmentForm() {
             <input {...register("facebook")} placeholder="https://facebook.com/your.profile" className={inputBase} />
           </Field>
 
+          <div className="rounded-xl border border-cyan-400/15 bg-cyan-400/5 px-3 py-2 text-center text-[10px] uppercase tracking-[0.2em] text-cyan-200/80">
+            {selectedClass
+              ? `Selected class: ${selectedClass} · ${selectedClass === "XI" ? "College GC A/B" : "School GC"}`
+              : "Select your class to see the correct GC option"}
+          </div>
+
+          <label className="flex items-start gap-3 rounded-xl border border-cyan-400/15 bg-white/[0.02] px-3 py-3 text-sm text-slate-200/90">
+            <input
+              type="checkbox"
+              {...register("termsAccepted")}
+              className="mt-1 h-4 w-4 rounded border-cyan-400/30 bg-slate-900 text-cyan-400 focus:ring-cyan-400"
+            />
+            <span>
+              I confirm that all the information is correct, and my contact details and Facebook profile are active.
+            </span>
+          </label>
+          {errors.termsAccepted && (
+            <span className="mt-1 block text-xs text-rose-300/90">{errors.termsAccepted.message}</span>
+          )}
+
           <button type="submit" disabled={isSubmitting}
             className="smoke-btn group relative mt-2 flex w-full items-center justify-center gap-2 disabled:opacity-60">
             {isSubmitting
@@ -254,7 +323,7 @@ export default function RecruitmentForm() {
           </button>
 
           <p className="pt-1 text-center font-mono text-[10px] uppercase tracking-[0.25em] text-slate-500/70">
-            You will receive the Messenger group link after submitting
+            Please join only one group. School GC is for Classes VI–X and College GC A/B is for Class XI.
           </p>
         </form>
       </div>
