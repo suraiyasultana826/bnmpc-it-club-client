@@ -25,7 +25,7 @@ const schema = z.object({
 
 const SECTIONS = Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i));
 const CLASS_OPTIONS = ["VI", "VII", "VIII", "IX", "X", "XI"];
-const OFFICIAL_FB_URL = "https://www.facebook.com/bnmpcitclub";
+const OFFICIAL_FB_URL = "https://www.facebook.com/bnmpc.itc/";
 
 const DEFAULT_GC_LINKS = [
   { id: "school", label: "Join School GC", url: OFFICIAL_FB_URL },
@@ -187,7 +187,7 @@ export default function RecruitmentForm() {
             <p className="text-xs text-amber-200/80 leading-relaxed">
               <span className="font-semibold text-amber-300">NB:</span> If you have any trouble joining the Messenger group, please send a message to the{" "}
               <a
-                href="https://www.facebook.com/bnmpcitclub"
+                href="https://www.facebook.com/bnmpc.itc/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="underline underline-offset-2 text-amber-300 hover:text-amber-200 transition-colors"
