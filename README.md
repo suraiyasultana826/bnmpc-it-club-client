@@ -12,7 +12,7 @@ BNMPC IT Club is a student tech community at Bir Shreshtha Noor Mohammad Public 
 
 ## Online Presence
 
-- **Facebook:** [BNMPC Information Technology Club](https://facebook.com/BNMPCITClub)
+- **Facebook:** [BNMPC Information Technology Club](https://www.facebook.com/bnmpc.itc)
 
 ## What This Project Is
 

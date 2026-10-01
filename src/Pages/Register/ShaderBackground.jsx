@@ -104,10 +104,16 @@ export default function ShaderBackground({ className }) {
     const uRes = gl.getUniformLocation(program, "iResolution");
     const uTime = gl.getUniformLocation(program, "iTime");
 
+    const isConstrainedDevice =
+      window.matchMedia("(max-width: 768px)").matches ||
+      (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4) ||
+      (navigator.deviceMemory && navigator.deviceMemory <= 4);
+    const renderScale = isConstrainedDevice ? 1 : Math.min(window.devicePixelRatio || 1, 1.5);
+    const frameInterval = isConstrainedDevice ? 1000 / 30 : 1000 / 60;
+
     const resize = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      canvas.width = window.innerWidth * dpr;
-      canvas.height = window.innerHeight * dpr;
+      canvas.width = Math.floor(window.innerWidth * renderScale);
+      canvas.height = Math.floor(window.innerHeight * renderScale);
       canvas.style.width = window.innerWidth + "px";
       canvas.style.height = window.innerHeight + "px";
       gl.viewport(0, 0, canvas.width, canvas.height);
@@ -115,26 +121,45 @@ export default function ShaderBackground({ className }) {
     window.addEventListener("resize", resize);
     resize();
 
-    const start = Date.now();
+    gl.clearColor(0, 0, 0, 1);
+    gl.useProgram(program);
+    gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+    gl.vertexAttribPointer(aVertex, 2, gl.FLOAT, false, 0, 0);
+    gl.enableVertexAttribArray(aVertex);
+
+    const start = performance.now();
+    let lastFrame = 0;
     let raf = 0;
-    const render = () => {
-      const t = (Date.now() - start) / 1000;
-      gl.clearColor(0, 0, 0, 1);
+    const render = (now) => {
+      if (now - lastFrame >= frameInterval) {
+        lastFrame = now;
+        const t = (now - start) / 1000;
       gl.clear(gl.COLOR_BUFFER_BIT);
-      gl.useProgram(program);
       gl.uniform2f(uRes, canvas.width, canvas.height);
       gl.uniform1f(uTime, t);
-      gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
-      gl.vertexAttribPointer(aVertex, 2, gl.FLOAT, false, 0, 0);
-      gl.enableVertexAttribArray(aVertex);
       gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+      }
       raf = requestAnimationFrame(render);
     };
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        cancelAnimationFrame(raf);
+        raf = 0;
+        return;
+      }
+      if (!raf) raf = requestAnimationFrame(render);
+    };
+    document.addEventListener("visibilitychange", handleVisibilityChange);
     raf = requestAnimationFrame(render);
 
     return () => {
       cancelAnimationFrame(raf);
       window.removeEventListener("resize", resize);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+      gl.deleteBuffer(positionBuffer);
+      gl.deleteProgram(program);
+      gl.deleteShader(vs);
+      gl.deleteShader(fs);
     };
   }, []);
 
