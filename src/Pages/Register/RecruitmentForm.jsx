@@ -7,7 +7,7 @@ import { User, Mail, Phone, GraduationCap, Hash, Users, Send, CheckCircle2, Exte
 import { FaFacebook } from "react-icons/fa";
 import { toast } from "sonner";
 
-const SERVER = "https://bnmpc-it-club-server.vercel.app";
+const SERVER = "https://itc-bnmpc-server.vercel.app";
 
 const schema = z.object({
   fullName: z.string().trim().min(2, "Enter your full name").max(80),
@@ -187,11 +187,7 @@ export default function RecruitmentForm() {
             <p className="text-xs text-amber-200/80 leading-relaxed">
               <span className="font-semibold text-amber-300">NB:</span> If you have any trouble joining the Messenger group, please send a message to the{" "}
               <a
-<<<<<<< HEAD
-                href="https://www.facebook.com/bnmpc.itc/"
-=======
                 href={OFFICIAL_FB_URL}
->>>>>>> e3390a0 (Improve registration portal performance)
                 target="_blank"
                 rel="noopener noreferrer"
                 className="underline underline-offset-2 text-amber-300 hover:text-amber-200 transition-colors"

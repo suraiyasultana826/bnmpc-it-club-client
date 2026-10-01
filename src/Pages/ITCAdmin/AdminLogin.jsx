@@ -3,7 +3,7 @@ import { motion } from "motion/react";
 import { Lock, User, Eye, EyeOff, LogIn } from "lucide-react";
 import logo from "../../assets/ITC LOGO.png";
 
-const SERVER = "https://bnmpc-it-club-server.vercel.app";
+const SERVER = "https://itc-bnmpc-server.vercel.app";
 
 export default function AdminLogin({ onLogin }) {
   const [username, setUsername] = useState("");

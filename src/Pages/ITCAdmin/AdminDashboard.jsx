@@ -3,7 +3,7 @@ import * as XLSX from "xlsx";
 import { Users, Link2, ToggleLeft, LogOut, Download, RefreshCw, Save, ChevronDown, Trash2 } from "lucide-react";
 import logo from "../../assets/ITC LOGO.png";
 
-const SERVER = "https://bnmpc-it-club-server.vercel.app";
+const SERVER = "https://itc-bnmpc-server.vercel.app";
 
 const TABS = [
   { id: "registrations", label: "Registrations", icon: Users },
