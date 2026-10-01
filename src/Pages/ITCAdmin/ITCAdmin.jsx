@@ -3,10 +3,9 @@ import AdminLogin from "./AdminLogin";
 import AdminDashboard from "./AdminDashboard";
 
 const ITCAdmin = () => {
-  const [authed, setAuthed] = useState(!!sessionStorage.getItem("itcadmin"));
+  const [authed, setAuthed] = useState(false);
 
   const handleLogout = () => {
-    sessionStorage.removeItem("itcadmin");
     setAuthed(false);
   };
 

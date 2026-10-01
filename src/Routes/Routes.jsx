@@ -8,13 +8,9 @@ import Gallery from "../Gallery/Gallery";
 import AboutUs from "../Pages/Home/AboutUs/AboutUs";
 import Footer from "../Pages/Home/Shared/Footer/Footer";
 import Panels from "../Pages/Panels/Panels";
-import Volunteers from "../Volunteers/Volunteers";
 import Admin from "../Admin/Admin";
 import GcLinkCollection from "../Pages/Register/GcLinkCollection";
 import Informativa from "../Pages/Home/Event/Informativa";
-import Participants from "../Pages/Home/Event/Participants";
-import OnlyMail from "../Volunteers/OnlyMail";
-import Volunteers2 from "../Volunteers/Volunteers2";
 
 import ITCAdmin from "../Pages/ITCAdmin/ITCAdmin";
 
@@ -52,14 +48,6 @@ import ITCAdmin from "../Pages/ITCAdmin/ITCAdmin";
           element:<Panels></Panels>
         },
         {
-          path:'wannaSeeNewVol',
-          element:<Volunteers></Volunteers>
-        },
-        {
-          path:'wannaSeeNewVol2',
-          element:<Volunteers2></Volunteers2>
-        },
-        {
           path:'gcLink',
           element:<GcLinkCollection></GcLinkCollection>
         },
@@ -71,14 +59,6 @@ import ITCAdmin from "../Pages/ITCAdmin/ITCAdmin";
           path: 'informativa',
           element:<Informativa></Informativa>
         },
-        {
-          path:'participants',
-          element:<Participants></Participants>
-        },
-        {
-          path:'onlyMails',
-          element:<OnlyMail></OnlyMail>
-        }
        
       ]
     },
